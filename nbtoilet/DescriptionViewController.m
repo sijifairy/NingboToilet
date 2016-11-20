@@ -35,33 +35,37 @@
     [btnBack setTitleColor:[UIColor lightGrayColor] forState:UIControlStateHighlighted];
     [btnBack addTarget:self action:@selector(onButtonClicked) forControlEvents:UIControlEventTouchUpInside];
     
+    UIColor *dividerColor = [UIColor colorWithRed:200/255.0 green:200/255.0 blue:200/255.0 alpha:0.8];
+    UIView *divider = [[UIView alloc]initWithFrame:CGRectMake(0, 69, CGRectGetWidth(self.view.bounds), 0.6)];
+    divider.backgroundColor = dividerColor;
+    
     UILabel *lbTitle = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetWidth(self.view.bounds)/2-40, 35, 80, 20)];
     [lbTitle setText:@"公厕详情"];
     [lbTitle setFont:[UIFont fontWithName:@"Helvetica-Bold" size:18]];
     
     [self.view addSubview:table];
     [self.view addSubview:btnBack];
+    [self.view addSubview:divider];
     [self.view addSubview:lbTitle];
     
     table.dataSource = self;
     table.delegate = self;
     table.allowsSelection = NO;
     _books = [[NSMutableArray alloc] initWithObjects:
-              @"公厕名称:",
+              @"厕所名称:",
               @"位置:",
-              @"类型:",
               @"开放时间:",
               @"收费情况:",
               @"厕纸情况:",
               @"无障碍设施:",
               @"管理部门:",
-              @"联系人:",
-              @"联系电话:",
+              @"负责人:",
+              @"联系方式:",
               nil];
+    /*
     _icons = [[NSMutableArray alloc] initWithObjects:
               @"detail",
               @"address",
-              @"type",
               @"time",
               @"dollar",
               @"toiletPaper",
@@ -69,10 +73,20 @@
               @"company",
               @"user",
               @"phone", nil];
+     */
+    _icons = [[NSMutableArray alloc] initWithObjects:
+              @"1",
+              @"10",
+              @"9",
+              @"11",
+              @"2",
+              @"8",
+              @"3",
+              @"6",
+              @"4", nil];
     _details =  [[NSMutableArray alloc] init];
     [_details addObject:[self.toiletDic objectForKey:@"ToiletName"]];
     [_details addObject:[self.toiletDic objectForKey:@"Address"]];
-    [_details addObject:[self.toiletDic objectForKey:@"ToiletType"]];
     [_details addObject:[self.toiletDic objectForKey:@"ServiceTime"]];
     bool isFree = [self.toiletDic objectForKey:@"IsFree"];
     [_details addObject:isFree?@"免费":@"收费"];
@@ -120,7 +134,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 65;
+    return 58;
 }
 
 @end

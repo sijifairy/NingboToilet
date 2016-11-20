@@ -18,9 +18,6 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
-    
-    // 设置应用程序的图标右上角的数字
     [application setApplicationIconBadgeNumber:0];
     
     if ([[UIDevice currentDevice].systemVersion doubleValue] >= 8.0) {
@@ -28,18 +25,8 @@
         [application registerUserNotificationSettings:settings];
     }
     
-    // 界面的跳转(针对应用程序被杀死的状态下的跳转)
-    // 杀死状态下的，界面跳转并不会执行下面的方法- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification，
-    // 所以我们在写本地通知的时候，要在这个与下面方法中写，但要判断，是通过哪种类型通知来打开的
     if (launchOptions[UIApplicationLaunchOptionsLocalNotificationKey]) {
         // 跳转代码
-//        UILabel *redView = [[UILabel alloc] init];
-//        redView.frame = CGRectMake(0, 0, 200, 300);
-//        redView.numberOfLines = 0;
-//        redView.font = [UIFont systemFontOfSize:12.0];
-//        redView.backgroundColor = [UIColor redColor];
-//        redView.text = [NSString stringWithFormat:@"%@", launchOptions];
-//        [self.window.rootViewController.view addSubview:redView];
     }
     
     return YES;
@@ -53,19 +40,13 @@
     // 必须要监听--应用程序在后台的时候进行的跳转
     if (application.applicationState == UIApplicationStateInactive) {
         NSLog(@"进行界面的跳转");
-        // 如果在上面的通知方法中设置了一些，可以在这里打印额外信息的内容，就做到监听，也就可以根据额外信息，做出相应的判断
-//        NSLog(@"%@", notification.userInfo);
-        
         NSString * toiletID = [notification.userInfo objectForKey:@"toiletID"];
-        
         webTableViewController *controller = [[webTableViewController alloc]init];
         controller.toiletID = toiletID;
         [NSImageUtil performViewController:[self topViewController] toDestination:controller];
-//        [self.window.rootViewController ]
-    }else
+    } else
     {
         NSLog(@"进行界面的跳转");
-        // 如果在上面的通知方法中设置了一些，可以在这里打印额外信息的内容，就做到监听，也就可以根据额外信息，做出相应的判断
         NSLog(@"%@", notification.userInfo);
     }
 }
