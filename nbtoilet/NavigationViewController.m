@@ -29,6 +29,10 @@ const NSInteger RoutePlanningPaddingEdge                    = 80;
     UIButton *btnNavigation;
     BOOL isFirstLocated;
     BOOL isFirstWalk;
+    UIButton *btnLocation;
+    UIButton *btnZoomIn;
+    UIButton *btnZoomOut;
+    UIView *legendView;
     CLLocationCoordinate2D lastCoordinate;
 }
 
@@ -61,8 +65,8 @@ const NSInteger RoutePlanningPaddingEdge                    = 80;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self initNavigationBar];
     [self initMap];
+    [self initNavigationBar];
     [self initButtons];
     [self addDefaultAnnotations];
     
@@ -93,8 +97,61 @@ const NSInteger RoutePlanningPaddingEdge                    = 80;
     [lbTitle setText:@"路径规划"];
     [lbTitle setFont:[UIFont fontWithName:@"Helvetica-Bold" size:18]];
     
+    UIColor *dividerColor = [UIColor colorWithRed:200/255.0 green:200/255.0 blue:200/255.0 alpha:0.8];
+    UIView *divider = [[UIView alloc]initWithFrame:CGRectMake(0, 65, CGRectGetWidth(self.view.bounds), 0.6)];
+    divider.backgroundColor = dividerColor;
+    
     [self.view addSubview:btnBack];
     [self.view addSubview:lbTitle];
+    [self.view addSubview:divider];
+    
+    btnLocation = [UIButton buttonWithType:UIButtonTypeCustom];
+    btnLocation.frame = CGRectMake(10, CGRectGetHeight(self.view.bounds)-50, 37, 40);
+    btnLocation.backgroundColor = [UIColor whiteColor];
+    btnLocation.alpha=0.9;
+    btnLocation.layer.borderColor = [[UIColor colorWithRed:220/255.0 green:220/255.0 blue:220/255.0 alpha:1] CGColor];
+    btnLocation.layer.borderWidth = 0.3;
+    btnLocation.layer.cornerRadius = 5;
+    [btnLocation setImage:[NSImageUtil scaleToSize:[UIImage imageNamed:@"location"] size:CGSizeMake(37, 40)]
+                 forState:UIControlStateNormal];
+    [btnLocation setImage:[NSImageUtil scaleToSize:[UIImage imageNamed:@"location"] size:CGSizeMake(37, 40)]
+                 forState:UIControlStateHighlighted];
+    [btnLocation addTarget:self action:@selector(onLocationClicked) forControlEvents:UIControlEventTouchUpInside];
+    
+    legendView =[[UIView alloc] initWithFrame:CGRectMake(CGRectGetWidth(self.view.bounds)-52, CGRectGetHeight(self.view.bounds)-98, 42, 88)];
+    UIImageView *legendBackgroundView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 42, 88)];
+    [legendBackgroundView setImage:[NSImageUtil scaleToSize:[UIImage imageNamed:@"zoombg"] size:CGSizeMake(42, 88)]];
+    [legendView addSubview:legendBackgroundView];
+    
+    btnZoomIn = [UIButton buttonWithType:UIButtonTypeCustom];
+    btnZoomIn.frame = CGRectMake(9, 10, 24, 24);
+    [btnZoomIn setImage:[UIImage imageNamed:@"zoomin"] forState:UIControlStateNormal];
+    [btnZoomIn addTarget:self action:@selector(onZoomInClicked) forControlEvents:UIControlEventTouchUpInside];
+    [legendView addSubview:btnZoomIn];
+    
+    btnZoomOut = [UIButton buttonWithType:UIButtonTypeCustom];
+    btnZoomOut.frame = CGRectMake(9, 54, 24, 24);
+    [btnZoomOut setImage:[UIImage imageNamed:@"zoomout"] forState:UIControlStateNormal];
+    [btnZoomOut addTarget:self action:@selector(onZoomOutClicked) forControlEvents:UIControlEventTouchUpInside];
+    [legendView addSubview:btnZoomOut];
+    
+    [self.view addSubview:legendView];
+    [self.view addSubview:btnLocation];
+}
+
+- (void)onLocationClicked
+{
+    [_mapView setCenterCoordinate:lastCoordinate animated:YES];
+}
+
+- (void)onZoomInClicked
+{
+    [_mapView setZoomLevel:_mapView.zoomLevel+1 animated:YES];
+}
+
+- (void)onZoomOutClicked
+{
+    [_mapView setZoomLevel:_mapView.zoomLevel-1 animated:YES];
 }
 
 - (void)onBackButtonClicked{
@@ -103,18 +160,18 @@ const NSInteger RoutePlanningPaddingEdge                    = 80;
 
 - (void)initButtons{
     btnCar = [UIButton buttonWithType:UIButtonTypeCustom];
-    btnCar.frame = CGRectMake(CGRectGetWidth(self.view.bounds)/2-60, 65, 120, 40);
-    [btnCar setImage:[NSImageUtil scaleToSize:[UIImage imageNamed:@"car_off"] size:CGSizeMake(20, 20)] withTitle:@"19分钟" forState:UIControlStateNormal];
+    btnCar.frame = CGRectMake(CGRectGetWidth(self.view.bounds)/2-60, 75, 120, 40);
+    [btnCar setImage:[NSImageUtil scaleToSize:[UIImage imageNamed:@"car_off"] size:CGSizeMake(20, 20)] withTitle:@"--分钟" forState:UIControlStateNormal];
     [btnCar addTarget:self action:@selector(onCarClicked) forControlEvents:UIControlEventTouchUpInside];
     
     btnBus = [UIButton buttonWithType:UIButtonTypeCustom];
-    btnBus.frame = CGRectMake(CGRectGetWidth(self.view.bounds)/4*3-60, 65, 120, 40);
-    [btnBus setImage:[NSImageUtil scaleToSize:[UIImage imageNamed:@"bus_off"] size:CGSizeMake(20, 20)] withTitle:@"12分钟" forState:UIControlStateNormal];
+    btnBus.frame = CGRectMake(CGRectGetWidth(self.view.bounds)/4*3-60, 75, 120, 40);
+    [btnBus setImage:[NSImageUtil scaleToSize:[UIImage imageNamed:@"bus_off"] size:CGSizeMake(20, 20)] withTitle:@"--分钟" forState:UIControlStateNormal];
     [btnBus addTarget:self action:@selector(onBusClicked) forControlEvents:UIControlEventTouchUpInside];
     
     btnWalk = [UIButton buttonWithType:UIButtonTypeCustom];
-    btnWalk.frame = CGRectMake(CGRectGetWidth(self.view.bounds)/4-60, 65, 120, 40);
-    [btnWalk setImage:[NSImageUtil scaleToSize:[UIImage imageNamed:@"walk_off"] size:CGSizeMake(20, 20)] withTitle:@"35分钟" forState:UIControlStateNormal];
+    btnWalk.frame = CGRectMake(CGRectGetWidth(self.view.bounds)/4-60, 75, 120, 40);
+    [btnWalk setImage:[NSImageUtil scaleToSize:[UIImage imageNamed:@"walk_off"] size:CGSizeMake(20, 20)] withTitle:@"--分钟" forState:UIControlStateNormal];
     [btnWalk addTarget:self action:@selector(onWalkClicked) forControlEvents:UIControlEventTouchUpInside];
     
     btnNavigation = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -133,21 +190,35 @@ const NSInteger RoutePlanningPaddingEdge                    = 80;
 }
 
 - (void)onCarClicked{
-    [self resetButtons];
-    [self highlightButton:btnCar withType:@"car"];
-    [self presentCurrentCourse:0];
+    if(self.routeCar.paths.count>0){
+        [self resetButtons];
+        [self highlightButton:btnCar withType:@"car"];
+        [self presentCurrentCourse:0];
+    }else{
+        
+    }
 }
 
 - (void)onBusClicked{
-    [self resetButtons];
-    [self highlightButton:btnBus withType:@"bus"];
-    [self presentCurrentCourse:2];
+    if(self.routeBus.transits.count>0){
+        [self resetButtons];
+        [self highlightButton:btnBus withType:@"bus"];
+        [self presentCurrentCourse:2];
+    } else{
+        UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"无公交路线" message:@"当前路线没有公交路线，请选择其他交通工具。" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+        [alert show];
+    }
 }
 
 - (void)onWalkClicked{
-    [self resetButtons];
-    [self highlightButton:btnWalk withType:@"walk"];
-    [self presentCurrentCourse:1];
+    if(self.routeWalk.paths.count>0){
+        [self resetButtons];
+        [self highlightButton:btnWalk withType:@"walk"];
+        [self presentCurrentCourse:1];
+    } else{
+        UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"无步行路线" message:@"当前路线距离过远，请选择驾车或公交前往。" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+        [alert show];
+    }
 }
 
 - (void) onNavigationClicked{
@@ -178,7 +249,7 @@ const NSInteger RoutePlanningPaddingEdge                    = 80;
 - (void)initMap{
     [AMapServices sharedServices].apiKey = APIKey;
     
-    _mapView = [[MAMapView alloc] initWithFrame:CGRectMake(0, 110, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds) - 110)];
+    _mapView = [[MAMapView alloc] initWithFrame:CGRectMake(0, 125, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds) - 125)];
     _mapView.delegate = self;
     _mapView.showsCompass = NO;
     _mapView.showsScale= NO;
@@ -342,12 +413,12 @@ const NSInteger RoutePlanningPaddingEdge                    = 80;
             /* 起点. */
             if ([[annotation title] isEqualToString:(NSString*)RoutePlanningViewControllerStartTitle])
             {
-                poiAnnotationView.image = [UIImage imageNamed:@"startPoint"];
+                poiAnnotationView.image = [NSImageUtil scaleToSize:[UIImage imageNamed:@"startPoint"] size:CGSizeMake(28, 38)];
             }
             /* 终点. */
             else if([[annotation title] isEqualToString:(NSString*)RoutePlanningViewControllerDestinationTitle])
             {
-                poiAnnotationView.image = [UIImage imageNamed:@"endPoint"];
+                poiAnnotationView.image = [NSImageUtil scaleToSize:[UIImage imageNamed:@"endPoint"] size:CGSizeMake(28, 38)];
             }
             
         }
@@ -373,12 +444,20 @@ const NSInteger RoutePlanningPaddingEdge                    = 80;
     if ([request class] == [AMapTransitRouteSearchRequest class])
     {
         self.routeBus = response.route;
-        [btnBus setTitle:[NSString stringWithFormat: @"%ld分钟", self.routeBus.transits[0].duration/60] forState:UIControlStateNormal];
+        if(self.routeBus.transits.count>0){
+            [btnBus setTitle:[NSString stringWithFormat: @"%ld分钟", self.routeBus.transits[0].duration/60] forState:UIControlStateNormal];
+        }else{
+            [btnBus setTitle:@"" forState:UIControlStateNormal];
+        }
     }
     else if ([request class] == [AMapWalkingRouteSearchRequest class])
     {
         self.routeWalk = response.route;
-        [btnWalk setTitle:[NSString stringWithFormat: @"%ld分钟", self.routeWalk.paths[0].duration/60] forState:UIControlStateNormal];
+        if(self.routeWalk.paths.count>0){
+            [btnWalk setTitle:[NSString stringWithFormat: @"%ld分钟", self.routeWalk.paths[0].duration/60] forState:UIControlStateNormal];
+        }else{
+            [btnWalk setTitle:@"" forState:UIControlStateNormal];
+        }
         if(isFirstWalk)
         {
             [self presentCurrentCourse:1];
@@ -387,7 +466,11 @@ const NSInteger RoutePlanningPaddingEdge                    = 80;
     }else
     {
         self.routeCar = response.route;
-        [btnCar setTitle:[NSString stringWithFormat:@"%ld分钟", self.routeCar.paths[0].duration/60] forState:UIControlStateNormal];
+        if(self.routeCar.paths.count>0){
+            [btnCar setTitle:[NSString stringWithFormat:@"%ld分钟", self.routeCar.paths[0].duration/60] forState:UIControlStateNormal];
+        }else{
+            [btnCar setTitle:@"" forState:UIControlStateNormal];
+        }
     }
 
     self.currentCourse = 0;
@@ -401,15 +484,27 @@ const NSInteger RoutePlanningPaddingEdge                    = 80;
     /* 公交路径规划. */
     if (type==2)
     {
-        self.naviRoute = [MANaviRoute naviRouteForTransit:self.routeBus.transits[self.currentCourse] startPoint:[AMapGeoPoint locationWithLatitude:self.startAnnotation.coordinate.latitude longitude:self.startAnnotation.coordinate.longitude] endPoint:[AMapGeoPoint locationWithLatitude:self.destinationAnnotation.coordinate.latitude longitude:self.destinationAnnotation.coordinate.longitude]];
+        if(self.routeBus.transits.count>0){
+            self.naviRoute = [MANaviRoute naviRouteForTransit:self.routeBus.transits[self.currentCourse] startPoint:[AMapGeoPoint locationWithLatitude:self.startAnnotation.coordinate.latitude longitude:self.startAnnotation.coordinate.longitude] endPoint:[AMapGeoPoint locationWithLatitude:self.destinationAnnotation.coordinate.latitude longitude:self.destinationAnnotation.coordinate.longitude]];
+        }else{
+            
+        }
     }
     else if (type==1)
     {
-        self.naviRoute = [MANaviRoute naviRouteForPath:self.routeWalk.paths[self.currentCourse] withNaviType:type showTraffic:YES startPoint:[AMapGeoPoint locationWithLatitude:self.startAnnotation.coordinate.latitude longitude:self.startAnnotation.coordinate.longitude] endPoint:[AMapGeoPoint locationWithLatitude:self.destinationAnnotation.coordinate.latitude longitude:self.destinationAnnotation.coordinate.longitude]];
+        if(self.routeWalk.paths.count>0){
+            self.naviRoute = [MANaviRoute naviRouteForPath:self.routeWalk.paths[self.currentCourse] withNaviType:type showTraffic:YES startPoint:[AMapGeoPoint locationWithLatitude:self.startAnnotation.coordinate.latitude longitude:self.startAnnotation.coordinate.longitude] endPoint:[AMapGeoPoint locationWithLatitude:self.destinationAnnotation.coordinate.latitude longitude:self.destinationAnnotation.coordinate.longitude]];
+        }else{
+            
+        }
     }
     else
     {
-        self.naviRoute = [MANaviRoute naviRouteForPath:self.routeCar.paths[self.currentCourse] withNaviType:type showTraffic:YES startPoint:[AMapGeoPoint locationWithLatitude:self.startAnnotation.coordinate.latitude longitude:self.startAnnotation.coordinate.longitude] endPoint:[AMapGeoPoint locationWithLatitude:self.destinationAnnotation.coordinate.latitude longitude:self.destinationAnnotation.coordinate.longitude]];
+        if(self.routeCar.paths.count>0){
+            self.naviRoute = [MANaviRoute naviRouteForPath:self.routeCar.paths[self.currentCourse] withNaviType:type showTraffic:YES startPoint:[AMapGeoPoint locationWithLatitude:self.startAnnotation.coordinate.latitude longitude:self.startAnnotation.coordinate.longitude] endPoint:[AMapGeoPoint locationWithLatitude:self.destinationAnnotation.coordinate.latitude longitude:self.destinationAnnotation.coordinate.longitude]];
+        }else{
+            
+        }
     }
     
     [self.naviRoute setAnntationVisible:YES];
