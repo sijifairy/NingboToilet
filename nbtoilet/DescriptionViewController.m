@@ -52,54 +52,27 @@
     table.delegate = self;
     table.allowsSelection = NO;
     _books = [[NSMutableArray alloc] initWithObjects:
-              @"厕所名称:",
+              @"公厕名称:",
               @"位置:",
               @"开放时间:",
-              @"收费情况:",
-              @"厕纸情况:",
+              @"母婴设施:",
               @"无障碍设施:",
-              @"管理部门:",
-              @"负责人:",
-              @"联系方式:",
               nil];
-    /*
-    _icons = [[NSMutableArray alloc] initWithObjects:
-              @"detail",
-              @"address",
-              @"time",
-              @"dollar",
-              @"toiletPaper",
-              @"wheelchair",
-              @"company",
-              @"user",
-              @"phone", nil];
-     */
     _icons = [[NSMutableArray alloc] initWithObjects:
               @"1",
               @"10",
               @"9",
-              @"11",
               @"2",
               @"8",
-              @"3",
-              @"6",
-              @"4", nil];
+              nil];
     _details =  [[NSMutableArray alloc] init];
     [_details addObject:[self.toiletDic objectForKey:@"ToiletName"]];
     [_details addObject:[self.toiletDic objectForKey:@"Address"]];
     [_details addObject:[self.toiletDic objectForKey:@"ServiceTime"]];
-    bool isFree = [self.toiletDic objectForKey:@"IsFree"];
-    [_details addObject:isFree?@"免费":@"收费"];
-    bool hasToiletPaper = [self.toiletDic objectForKey:@"HasToiletPaper"];
-    [_details addObject:hasToiletPaper?@"有厕纸":@"无厕纸"];
-    bool hasDeformity = [self.toiletDic objectForKey:@"HasDeformity"];
-    [_details addObject:hasDeformity?@"有":@"无"];
-    [_details addObject:[self.toiletDic objectForKey:@"DepartmentName"]];
-    [_details addObject:[self.toiletDic objectForKey:@"ContactPerson"]];
-    [_details addObject:[self.toiletDic objectForKey:@"ContactPhone"]];
-//    table.tableHeaderView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"location_star"]];
-//    table.tableFooterView = [[UIImageView alloc] initWithImage: [UIImage imageNamed:@"location_normal"]];
-    
+    NSString * hasBabyRoom = [self.toiletDic objectForKey:@"HasToiletPaper"];
+    [_details addObject:[DescriptionViewController isBlankString:hasBabyRoom]?@"无":hasBabyRoom];
+    NSString *hasDeformity =[self.toiletDic objectForKey:@"HasDeformity"];
+    [_details addObject:[DescriptionViewController isBlankString:hasDeformity]?@"无":hasDeformity];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -135,6 +108,19 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 58;
+}
+
++ (BOOL) isBlankString:(NSString *)string {
+    if (string == nil || string == NULL) {
+        return YES;
+    }
+    if ([string isKindOfClass:[NSNull class]]) {
+        return YES;
+    }
+    if ([[string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length]==0) {
+        return YES;
+    }
+    return NO;
 }
 
 @end
