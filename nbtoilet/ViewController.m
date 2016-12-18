@@ -5,7 +5,6 @@
 #import <MAMapKit/MAMapKit.h>
 #import <AMapFoundationKit/AMapFoundationKit.h>
 #import "webTableViewController.h"
-
 #define APIKey @"2292b5677dddaad976d5f522b650d57f"
 
 @interface ViewController ()<MAMapViewDelegate,NSURLConnectionDataDelegate,UIActionSheetDelegate>{
@@ -58,6 +57,9 @@
     [self.view addSubview:lbTitle];
 }
 
+- (void)viewDidDisappear:(BOOL)animated{
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -76,7 +78,6 @@
     _mapView.rotateCameraEnabled= NO;    //NO表示禁用倾斜手势，YES表示开启
     _mapView.logoCenter = CGPointMake(CGRectGetWidth(self.view.bounds)-40, CGRectGetHeight(self.view.bounds)-95);
     _mapView.pausesLocationUpdatesAutomatically = NO;
-    _mapView.allowsBackgroundLocationUpdates = YES;//iOS9以上系统必须配置
     
     //添加手势
     UITapGestureRecognizer *gesture=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(hideDetailView)];
