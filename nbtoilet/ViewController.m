@@ -55,6 +55,8 @@
     [lbTitle setTextColor:[UIColor darkGrayColor]];
     [lbTitle setFont:[UIFont fontWithName:@"Helvetica-Bold" size:21]];
     [self.view addSubview:lbTitle];
+    
+//    [self onSearchClicked];
 }
 
 - (void)viewDidDisappear:(BOOL)animated{
@@ -238,7 +240,7 @@ updatingLocation:(BOOL)updatingLocation
         lastCoordinate =CLLocationCoordinate2DMake(userLocation.coordinate.latitude,userLocation.coordinate.longitude);
         if(isFirstLocated){
             [_mapView setCenterCoordinate:lastCoordinate animated:YES];
-            [_mapView setZoomLevel:13 animated:YES];
+            [_mapView setZoomLevel:14 animated:YES];
             isFirstLocated = NO;
         }
     }

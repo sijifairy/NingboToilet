@@ -7,6 +7,7 @@
 //
 
 #import "webTableViewController.h"
+#import "UIWebView+replace_alert.h"
 
 @interface webTableViewController ()
 

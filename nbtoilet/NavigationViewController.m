@@ -260,7 +260,6 @@ const NSInteger RoutePlanningPaddingEdge                    = 80;
     _mapView.rotateCameraEnabled= NO;    //NO表示禁用倾斜手势，YES表示开启
     _mapView.logoCenter = CGPointMake(CGRectGetWidth(self.view.bounds)-40, CGRectGetHeight(self.view.bounds)-95);
     _mapView.pausesLocationUpdatesAutomatically = NO;
-    _mapView.allowsBackgroundLocationUpdates = YES;//iOS9以上系统必须配置
     _mapView.layer.borderColor = [[UIColor colorWithRed:220/255.0 green:220/255.0 blue:220/255.0 alpha:1] CGColor];
     _mapView.layer.borderWidth = 0.8;
     
