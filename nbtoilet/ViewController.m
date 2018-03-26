@@ -338,7 +338,7 @@ updatingLocation:(BOOL)updatingLocation
         annotationView.draggable = YES;        //设置标注可以拖动，默认为NO
         int index = [annotation.title integerValue];
         NSDictionary *dict = [toiletArray objectAtIndex:index];
-        NSString *type = [dict objectForKey:@"ToiletType"];
+        NSString *type = [dict objectForKey:@"ToiletBelongTo"];
         annotationView.image = [NSImageUtil scaleToSize:[UIImage imageNamed:[self getIconByType:type andIsSelected:NO]] size:CGSizeMake(36, 36)];
         annotationView.userInteractionEnabled = YES;
         //添加手势
@@ -352,16 +352,16 @@ updatingLocation:(BOOL)updatingLocation
 }
 
 - (NSString *) getIconByType :(NSString *)type andIsSelected: (bool) selected{
-    if([type  isEqual: @"星级公厕"]){
-        if(selected)
-            return @"toilet_star_clicked";
-        else
-            return @"toilet_star";
-    }else{
+    if([type  isEqual: @"环卫公厕"]){
         if(selected)
             return @"toilet_normal_clicked";
         else
             return @"toilet_normal";
+    }else{
+        if(selected)
+            return @"toilet_star_clicked";
+        else
+            return @"toilet_star";
     }
 }
 
@@ -378,7 +378,7 @@ updatingLocation:(BOOL)updatingLocation
             NSDictionary *dict = [toiletArray objectAtIndex:selectIndex];
             NSString *name = [dict objectForKey:@"ToiletName"];
             NSString *address = [dict objectForKey:@"Address"];
-            NSString *type = [dict objectForKey:@"ToiletType"];
+            NSString *type = [dict objectForKey:@"ToiletBelongTo"];
             lastAnnotationType= type;
             NSString *distance = [dict objectForKey:@"Distance"];
             NSString *dis = [NSString stringWithFormat:@"%@距离%.2f千米",[address isEqualToString:@""]?@"":@"   ",[distance floatValue]/1000];

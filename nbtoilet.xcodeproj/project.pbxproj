@@ -35,6 +35,7 @@
 		2874F7B41D4D8D45001F5DED /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2874F7B21D4D8D45001F5DED /* LaunchScreen.storyboard */; };
 		2874F7BF1D4D8D45001F5DED /* nbtoiletTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2874F7BE1D4D8D45001F5DED /* nbtoiletTests.m */; };
 		2874F7CA1D4D8D45001F5DED /* nbtoiletUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2874F7C91D4D8D45001F5DED /* nbtoiletUITests.m */; };
+		28980E371E3251DA00D067AD /* UIWebView+replace_alert.m in Sources */ = {isa = PBXBuildFile; fileRef = 28980E361E3251DA00D067AD /* UIWebView+replace_alert.m */; };
 		28B2A2811D786F60003723FA /* MANaviRoute.m in Sources */ = {isa = PBXBuildFile; fileRef = 28B2A2801D786F60003723FA /* MANaviRoute.m */; };
 		28B2A2841D787041003723FA /* MANaviAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 28B2A2831D787041003723FA /* MANaviAnnotation.m */; };
 		28B2A2871D7872EE003723FA /* LineDashPolyline.m in Sources */ = {isa = PBXBuildFile; fileRef = 28B2A2861D7872EE003723FA /* LineDashPolyline.m */; };
@@ -63,9 +64,9 @@
 		28D174B51DB9103A005404A3 /* zoomout.png in Resources */ = {isa = PBXBuildFile; fileRef = 28D174B31DB9103A005404A3 /* zoomout.png */; };
 		28D174BA1DB99303005404A3 /* toilet_normal_clicked.png in Resources */ = {isa = PBXBuildFile; fileRef = 28D174B61DB99303005404A3 /* toilet_normal_clicked.png */; };
 		28D174BB1DB99303005404A3 /* toilet_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 28D174B71DB99303005404A3 /* toilet_normal.png */; };
-		28D174BC1DB99303005404A3 /* toilet_star_clicked.png in Resources */ = {isa = PBXBuildFile; fileRef = 28D174B81DB99303005404A3 /* toilet_star_clicked.png */; };
-		28D174BD1DB99303005404A3 /* toilet_star.png in Resources */ = {isa = PBXBuildFile; fileRef = 28D174B91DB99303005404A3 /* toilet_star.png */; };
 		83A59E7EDD31C7788F02C0C8 /* libPods-nbtoilet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2426B757F7484B25DE19B043 /* libPods-nbtoilet.a */; };
+		AD357D192061291100F297F9 /* toilet_star.png in Resources */ = {isa = PBXBuildFile; fileRef = AD357D172061291000F297F9 /* toilet_star.png */; };
+		AD357D1A2061291100F297F9 /* toilet_star_clicked.png in Resources */ = {isa = PBXBuildFile; fileRef = AD357D182061291000F297F9 /* toilet_star_clicked.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -130,6 +131,8 @@
 		2874F7C51D4D8D45001F5DED /* nbtoiletUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = nbtoiletUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2874F7C91D4D8D45001F5DED /* nbtoiletUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = nbtoiletUITests.m; sourceTree = "<group>"; };
 		2874F7CB1D4D8D45001F5DED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		28980E351E3251DA00D067AD /* UIWebView+replace_alert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIWebView+replace_alert.h"; path = "../../../Workspace/NingboToilet/nbtoilet/UIWebView+replace_alert.h"; sourceTree = "<group>"; };
+		28980E361E3251DA00D067AD /* UIWebView+replace_alert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIWebView+replace_alert.m"; path = "../../../Workspace/NingboToilet/nbtoilet/UIWebView+replace_alert.m"; sourceTree = "<group>"; };
 		28B2A27F1D786F60003723FA /* MANaviRoute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MANaviRoute.h; sourceTree = "<group>"; };
 		28B2A2801D786F60003723FA /* MANaviRoute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MANaviRoute.m; sourceTree = "<group>"; };
 		28B2A2821D787041003723FA /* MANaviAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MANaviAnnotation.h; sourceTree = "<group>"; };
@@ -165,9 +168,9 @@
 		28D174B31DB9103A005404A3 /* zoomout.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zoomout.png; sourceTree = "<group>"; };
 		28D174B61DB99303005404A3 /* toilet_normal_clicked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = toilet_normal_clicked.png; sourceTree = "<group>"; };
 		28D174B71DB99303005404A3 /* toilet_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = toilet_normal.png; sourceTree = "<group>"; };
-		28D174B81DB99303005404A3 /* toilet_star_clicked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = toilet_star_clicked.png; sourceTree = "<group>"; };
-		28D174B91DB99303005404A3 /* toilet_star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = toilet_star.png; sourceTree = "<group>"; };
 		829BB9A0B4C60044C50A9FD2 /* Pods-nbtoilet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nbtoilet.debug.xcconfig"; path = "Pods/Target Support Files/Pods-nbtoilet/Pods-nbtoilet.debug.xcconfig"; sourceTree = "<group>"; };
+		AD357D172061291000F297F9 /* toilet_star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = toilet_star.png; sourceTree = "<group>"; };
+		AD357D182061291000F297F9 /* toilet_star_clicked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = toilet_star_clicked.png; sourceTree = "<group>"; };
 		BFB3D4BB8663467E71BD1BC4 /* Pods-nbtoilet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nbtoilet.release.xcconfig"; path = "Pods/Target Support Files/Pods-nbtoilet/Pods-nbtoilet.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -234,10 +237,10 @@
 				2821A0101D6012590087B26F /* navigation.png */,
 				2821A03A1D6998E80087B26F /* phone.png */,
 				2821A0611D69F8C20087B26F /* startPoint.png */,
+				AD357D182061291000F297F9 /* toilet_star_clicked.png */,
+				AD357D172061291000F297F9 /* toilet_star.png */,
 				28D174B61DB99303005404A3 /* toilet_normal_clicked.png */,
 				28D174B71DB99303005404A3 /* toilet_normal.png */,
-				28D174B81DB99303005404A3 /* toilet_star_clicked.png */,
-				28D174B91DB99303005404A3 /* toilet_star.png */,
 				28D174AA1DB8523E005404A3 /* top_background.png */,
 				2821A0551D69BE570087B26F /* walk_off.png */,
 				2821A0561D69BE570087B26F /* walk_on.png */,
@@ -293,6 +296,8 @@
 				2874F7AB1D4D8D45001F5DED /* ViewController.m */,
 				28B2A2991D7ADD86003723FA /* webTableViewController.h */,
 				28B2A29A1D7ADD86003723FA /* webTableViewController.m */,
+				28980E351E3251DA00D067AD /* UIWebView+replace_alert.h */,
+				28980E361E3251DA00D067AD /* UIWebView+replace_alert.m */,
 			);
 			path = nbtoilet;
 			sourceTree = "<group>";
@@ -437,7 +442,7 @@
 					2874F7A01D4D8D45001F5DED = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = 5GTFMZ5LXY;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -489,10 +494,8 @@
 				28D174BA1DB99303005404A3 /* toilet_normal_clicked.png in Resources */,
 				28C6D8DB1DD793F100D19818 /* 1.png in Resources */,
 				28C6D8DE1DD793F100D19818 /* 4.png in Resources */,
-				28D174BD1DB99303005404A3 /* toilet_star.png in Resources */,
 				2821A05A1D69BE570087B26F /* car_on.png in Resources */,
 				2821A0111D6012590087B26F /* navigation.png in Resources */,
-				28D174BC1DB99303005404A3 /* toilet_star_clicked.png in Resources */,
 				28C6D8E21DD793F100D19818 /* 9.png in Resources */,
 				2821A0631D69F8C20087B26F /* endPoint.png in Resources */,
 				28D174B51DB9103A005404A3 /* zoomout.png in Resources */,
@@ -503,6 +506,7 @@
 				28C6D8E41DD793F100D19818 /* 11.png in Resources */,
 				2821A0581D69BE570087B26F /* bus_on.png in Resources */,
 				284C84501DD76B3500768F01 /* feedback.png in Resources */,
+				AD357D1A2061291100F297F9 /* toilet_star_clicked.png in Resources */,
 				28C6D8DD1DD793F100D19818 /* 3.png in Resources */,
 				2821A0421D6998E80087B26F /* phone.png in Resources */,
 				2821A05C1D69BE570087B26F /* walk_on.png in Resources */,
@@ -511,6 +515,7 @@
 				28C6D8DF1DD793F100D19818 /* 5.png in Resources */,
 				281DC5101DE1ABDC006B246F /* 2.png in Resources */,
 				28C6D8E11DD793F100D19818 /* 8.png in Resources */,
+				AD357D192061291100F297F9 /* toilet_star.png in Resources */,
 				28B2A28F1D78781F003723FA /* man@2x.png in Resources */,
 				2874F7AF1D4D8D45001F5DED /* Main.storyboard in Resources */,
 				28C6D8E01DD793F100D19818 /* 6.png in Resources */,
@@ -599,6 +604,7 @@
 				2821A0501D69BA7A0087B26F /* NavigationViewController.m in Sources */,
 				2874F7A91D4D8D45001F5DED /* AppDelegate.m in Sources */,
 				2874F7A61D4D8D45001F5DED /* main.m in Sources */,
+				28980E371E3251DA00D067AD /* UIWebView+replace_alert.m in Sources */,
 				2821A0371D6995ED0087B26F /* NSImageUtil.m in Sources */,
 				28B2A2871D7872EE003723FA /* LineDashPolyline.m in Sources */,
 				28B2A29B1D7ADD86003723FA /* webTableViewController.m in Sources */,
@@ -750,9 +756,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Beijing Chuangyixinshiji  Technology CO., LTD. (5GTFMZ5LXY)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5GTFMZ5LXY;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = nbtoilet/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -785,8 +794,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.bjcy.nbtoilet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "aabc6f33-a35d-4633-a3bf-cd358dbe5e35";
-				PROVISIONING_PROFILE_SPECIFIER = NBToilet;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Debug;
 		};
@@ -797,9 +806,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Beijing Chuangyixinshiji  Technology CO., LTD. (5GTFMZ5LXY)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5GTFMZ5LXY;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = nbtoilet/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -832,8 +844,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.bjcy.nbtoilet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "aabc6f33-a35d-4633-a3bf-cd358dbe5e35";
-				PROVISIONING_PROFILE_SPECIFIER = NBToilet;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
 		};
